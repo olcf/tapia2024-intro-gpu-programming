@@ -1,8 +1,8 @@
 # A Brief Introduction to GPU Programming
 
-*Verónica Melesse Vergara & Tom Papatheodore (Oak Ridge Leadership Computing Facility - OLCF)*
+*Elijah MacCarthy, William Castillo & Togo Odbadrakh (Oak Ridge Leadership Computing Facility - OLCF)*
 
-This repository is part of the Tapia 2022 DOE National Laboratories HPC session. It includes the following components:
+This repository is part of the Tapia 2024 DOE National Laboratories HPC session. It includes the following components:
 
 * `examples` - contains codes that are demonstrated as part of the self-guided tutorial.
 * `exercises` - contains hands-on exercises for the participants to perform on their own.
@@ -17,13 +17,13 @@ Don't worry much about these components. You'll be guided through the important 
 
 First things first... 
 
-### Get Access to Spock and Log in
+### Get Access to Frontier and Log in
 
-You'll need to get access to [OLCF's Spock compute system](https://docs.olcf.ornl.gov/systems/spock_quick_start_guide.html). To do so, please follow the instructions given by the on-site OLCF staff.
+You'll need to get access to [OLCF's Frontier compute system](https://docs.olcf.ornl.gov/systems/frontier_user_guide.html). To do so, please follow the instructions given by the on-site OLCF staff.
 
 ### Clone the Repository
 
-When you log in to Spock, you'll be dropped into your "home" directory (`/ccs/home/<username>` - where `username` will be the `csepXXX` found on the front of your yellow RSA token envelope). From there, clone the repository using the following command:
+When you log in to Frontier, you'll be dropped into your "home" directory (`/ccs/home/<username>` - where `username` will be the `csepXXX` found on the front of your yellow RSA token envelope). From there, clone the repository using the following command:
 
 ```bash
 $ git clone https://github.com/olcf/tapia2022-intro-gpu-programming.git
