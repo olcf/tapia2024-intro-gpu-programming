@@ -1,4 +1,4 @@
-#include "../../common/hip_translator.h"
+#include "../../../common/hip_translator.h"
 #include <stdio.h>
 #include <math.h>
 
