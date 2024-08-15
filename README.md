@@ -26,7 +26,7 @@ You'll need to get access to [OLCF's Frontier compute system](https://docs.olcf.
 When you log in to Frontier, you'll be dropped into your "home" directory (`/ccs/home/<username>` - where `username` will be the `csepXXX` found on the front of your yellow RSA token envelope). From there, clone the repository using the following command:
 
 ```bash
-$ git clone https://github.com/olcf/tapia2022-intro-gpu-programming.git
+$ git clone https://github.com/olcf/tapia2024-intro-gpu-programming.git
 ```
 
 > NOTES:
@@ -295,7 +295,7 @@ Ok, enough descriptions. Let's run the code. To do so, ...
 1) Navigate to the repository directory:
 
 ```bash
-$ cd tapia2022-intro-gpu-programming
+$ cd tapia2024-intro-gpu-programming
 ```
 
 2) Set up the programming environment:
@@ -435,7 +435,7 @@ Recall from Example 1, we were trying to answer the question “what happens if 
 1) Navigate to the directory 
 
 ```bash
-$ cd tapia2022-intro-gpu-programming/examples/vector_addition_with_error_check
+$ cd tapia2024-intro-gpu-programming/examples/vector_addition_with_error_check
 ```
 
 2) Change `N` to `5e9` to see what happens:
@@ -471,7 +471,7 @@ In this exercise, you will compile and run a vector addition program that includ
 1) Navigate to the directory
 
 ```bash
-$ cd tapia2022-intro-gpu-programming/exercises/vector_addition_find_the_error
+$ cd tapia2024-intro-gpu-programming/exercises/vector_addition_find_the_error
 ```
 
 2) Then compile the code
@@ -499,7 +499,7 @@ In this exercise, you are given a program that simple squares all the values of 
 1) First, navigate to the directory
 
 ```bash
-tapia2022-intro-gpu-programming/exercises/square_array_elements_complete_the_kernel
+tapia2024-intro-gpu-programming/exercises/square_array_elements_complete_the_kernel
 ```
 
 2) The file `square_array_elements.cu` contains a program which simply takes an array and squares each of the elements on the GPU. However, the “squaring of the array elements” is missing from the GPU kernel. Add the missing calculation in the square_array_elements.cu file.
@@ -525,7 +525,7 @@ In this exercise, you are given a program that computes the average value of eac
 1) First, navigate to the directory
 
 ```bash
-$ cd tapia2022-intro-gpu-programming/exercises/average_array_elements_complete_the_data_transfers
+$ cd tapia2024-intro-gpu-programming/exercises/average_array_elements_complete_the_data_transfers
 ```
 
 2) Add in the correct CPU and GPU buffers to the 2 `cudaMemcpy` calls.
