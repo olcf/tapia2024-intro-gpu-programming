@@ -40,11 +40,11 @@ int main()
     free(B);
     free(C);
 
-    printf("\n---------------------------\n");
+    printf("\n--------------------------- =%d\n",bytes);
     printf("__SUCCESS__\n");
     printf("---------------------------\n");
     printf("N                 = %d\n", N);
     printf("---------------------------\n");
 
     return 0;
-}
+vector_addition.f90}

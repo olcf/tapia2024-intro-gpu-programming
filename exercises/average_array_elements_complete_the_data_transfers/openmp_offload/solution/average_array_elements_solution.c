@@ -76,6 +76,7 @@ int main()
         elapsed_time_cpu_compute += cpu_stop - cpu_start;
            
              // If id is not in the halo...
+       //TODO: write code to move data from host to device for target region
        gpu_start = omp_get_wtime();
       #pragma omp target enter data map(to:A[:N])
       #pragma omp parallel for
