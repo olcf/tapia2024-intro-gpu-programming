@@ -1,6 +1,6 @@
 # A Brief Introduction to GPU Programming
 
-*Elijah MacCarthy, William Castillo & Togo Odbadrakh (Oak Ridge Leadership Computing Facility - OLCF)*
+*Elijah MacCarthy, William Castillo, Togo Odbadrakh & Hector Suarez (Oak Ridge Leadership Computing Facility - OLCF)*
 
 This repository is part of the Tapia 2024 DOE National Laboratories HPC session. It includes the following components:
 
