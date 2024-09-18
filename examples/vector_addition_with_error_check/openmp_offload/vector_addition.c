@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <omp.h>
 
 // Size of array
 #define N 1048576
@@ -11,6 +12,10 @@ int main()
 {
     // Number of bytes to allocate for N doubles
     size_t bytes = N*sizeof(double);
+    
+    //declaring start_time and end_time
+    double start_time, end_time;
+    float elapsed_time;
 
     // Allocate memory for arrays A, B, and C on host
     double *A = (double*)malloc(bytes);
@@ -27,14 +32,16 @@ int main()
         C[i] = 0.0;
     }
 
+    start_time = omp_get_wtime();
     //Summing arrays A and B for C
     #pragma omp target map(to:A[:N], B[:N]) map(from:  C[:N])
-    #pragma omp parallel for
+    #pragma omp  teams 
     for(int i=0; i<N; i++)
     {
 	    C[i] = A[i] + B[i];
     }
-
+    end_time = omp_get_wtime();
+    elapsed_time = end_time - start_time;
 
     // Verify results
     double tolerance = 1.0e-14;
@@ -57,6 +64,7 @@ int main()
     printf("---------------------------\n");
     printf("N                 = %d\n", N);
     printf("---------------------------\n\n");
+    printf("Elapsed Compute time      = %1.5f\n", elapsed_time);
 
     return 0;
 }

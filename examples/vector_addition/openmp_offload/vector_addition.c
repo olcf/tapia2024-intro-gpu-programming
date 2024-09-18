@@ -28,7 +28,7 @@ int main()
 
     //Summing arrays A and B for C
     #pragma omp target map(to:A[:N], B[:N]) map(from:  C[:N])
-    #pragma omp parallel for
+    #pragma omp teams
     for(int i=0; i<N; i++)
     {
 	    C[i] = A[i] + B[i];
@@ -40,11 +40,11 @@ int main()
     free(B);
     free(C);
 
-    printf("\n--------------------------- =%d\n",bytes);
+    printf("\n--------------------------- \n");
     printf("__SUCCESS__\n");
     printf("---------------------------\n");
     printf("N                 = %d\n", N);
     printf("---------------------------\n");
 
     return 0;
-vector_addition.f90}
+}

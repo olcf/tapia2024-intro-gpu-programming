@@ -8,8 +8,8 @@ program vector_addition
        real(8), allocatable :: A(:)
        real(8), allocatable :: B(:)
        real(8), allocatable :: C(:)
-       DOUBLE PRECISION  :: byte
-       real(8) :: tolerance
+       DOUBLE PRECISION  :: byte, elapsed_time
+       real(8) :: tolerance, start_time, end_time 
     
        !Allocating memory for A, B and C  
      !  allocate(A(n))  !
@@ -25,6 +25,7 @@ program vector_addition
        enddo
    
        !Summing arrays A and B for C
+       start_time = omp_get_wtime()
        !$acc data copyin(A,B)    !!copying arrays A and B to device
        !$acc parallel loop
        do i=1,N
@@ -32,7 +33,9 @@ program vector_addition
          C(i) = A(i) + B(i)
        enddo
        !$acc end data
-
+       
+       end_time = omp_get_wtime()
+       elapsed_time = end_time - start_time
 
        !Verify results
        tolerance = 1.0d-14
@@ -52,6 +55,7 @@ program vector_addition
        print *, "---------------------------"
        print *, "N                 = ", N
        print *, "---------------------------"
+       print *, "Elapsed Compute Time           = ", elapsed_time
        print *, ""
      
 end program
