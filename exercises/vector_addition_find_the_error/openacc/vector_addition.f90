@@ -24,6 +24,7 @@ program vector_addition
        enddo
        start_time= omp_get_wtime()
        !Summing arrays A and B for C
+       !TODO: Fix the error in the offload region
        !$acc parallel loop copyin(A[-1:N],B[-1:N]) 
        do i=1,N
 

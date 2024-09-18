@@ -56,17 +56,18 @@ program stencil
 
         ! Perform computation on GPU
         !!TODO : write code to move data between host and device for target region
-        !$acc parallel loop 
+        !$acc parallel loop  private(i,j) 
         do i = stencil_radius + 1, stencil_radius + N
             if (i >= stencil_radius + 1 .and. i < stencil_radius + N + 1) then
                 A_average_gpu(i) = 0.0
+                ! !$acc loop private(j) 
                 do j = -stencil_radius, stencil_radius
+                    !$acc atomic update
                     A_average_gpu(i) = A_average_gpu(i) + A(i + j)
                 end do
-               ! !$acc update host(A_average_gpu)
+                !$acc atomic update 
                 A_average_gpu(i) = A_average_gpu(i) / stencil_size
             end if
-          !$acc update host(A_average_gpu)
         end do
 
         ! Stop timer for GPU calculations

@@ -51,30 +51,30 @@ program stencil
         cpu_stop = omp_get_wtime()
         elapsed_time_cpu_compute = elapsed_time_cpu_compute + cpu_stop - cpu_start
 
-        ! Copy data to GPU
+        
         gpu_start = omp_get_wtime()
 
         ! Perform computation on GPU
         !!TODO : write code to move data from host to device for target region
-        !$acc parallel loop copyin(A) copyout(A_average_gpu) 
+        !$acc parallel loop copyin(A) copyout(A_average_gpu) private(i,j)
         do i = stencil_radius + 1, stencil_radius + N
             if (i >= stencil_radius + 1 .and. i < stencil_radius + N + 1) then
                 A_average_gpu(i) = 0.0
+                ! !$acc parallel loop private(j)
                 do j = -stencil_radius, stencil_radius
+                    !$acc atomic update
                     A_average_gpu(i) = A_average_gpu(i) + A(i + j)
                 end do
-               ! !$acc update host(A_average_gpu)
+                !$acc atomic update
                 A_average_gpu(i) = A_average_gpu(i) / stencil_size
             end if
-          !$acc update host(A_average_gpu)
         end do
-
         ! Stop timer for GPU calculations
         gpu_stop = omp_get_wtime()
         elapsed_time_gpu_compute = elapsed_time_gpu_compute + gpu_stop - gpu_start
 
     end do
-
+    
     ! Stop timer for total time
     total_stop = omp_get_wtime()
 

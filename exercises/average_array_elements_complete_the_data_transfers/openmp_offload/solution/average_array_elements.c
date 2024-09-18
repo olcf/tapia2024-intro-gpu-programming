@@ -46,10 +46,10 @@ int main()
     float  elapsed_time_gpu_compute        = 0.0;
     float  elapsed_time_gpu_data_transfers_temp;
     float  elapsed_time_gpu_data_transfers = 0.0;
-
+    double sum=0;
     // Start timer for total time
     total_start = omp_get_wtime();
-
+    
     for(int time_step = 0; time_step < total_time_steps; time_step++){
 
         // Start timer for CPU calculations
@@ -79,12 +79,12 @@ int main()
        //TODO: write code to move data from host to device for target region
        gpu_start = omp_get_wtime();
       #pragma omp target enter data map(to:A[:N])
-      #pragma omp parallel for
+      #pragma omp  teams distribute parallel for reduction(+:sum) 
        for(int i=0; i<(N+2*stencil_radius); i++){
          if( (i >= stencil_radius) && (i < (stencil_radius + N)) ) {
         // Calculate sum of stencil elements
-            double sum = 0.0;
-
+            sum = 0.0;
+      
             for(int j=-stencil_radius; j<=stencil_radius; j++){
             sum = sum + A[i + j];
         }
@@ -93,6 +93,7 @@ int main()
         A_average_gpu[i] = sum / stencil_size;
            }
 	}
+      
       #pragma omp target exit data map(delete:A[:N]) 
         gpu_stop = omp_get_wtime();
 	elapsed_time_gpu_compute += gpu_stop - gpu_start;

@@ -6,12 +6,6 @@
 // Size of array
 #define N 1048576
 
-// Kernel
-/*__global__ void vector_addition(double *a, double *b, double *c)
-{
-    int id = blockDim.x * blockIdx.x + threadIdx.x;
-    if(id < N) c[id] = a[id] + b[id];
-}*/
 
 // Main program
 int main()
@@ -42,21 +36,6 @@ int main()
 	    C[i] = A[i] + B[i];
     }
 
-    // Copy data from host arrays A and B to device arrays d_A and d_B
-   // cudaMemcpy(d_A, A, bytes, cudaMemcpyHostToDevice);
-    //cudaMemcpy(d_B, B, bytes, cudaMemcpyHostToDevice);
-
-    // Set execution configuration parameters
-    //      thr_per_blk: number of HIP threads per grid block
-    //      blk_in_grid: number of blocks in grid
-    // int thr_per_blk = 128;
-    // int blk_in_grid = ceil( float(N) / thr_per_blk );
-
-    // Launch kernel
-   // vector_addition<<<blk_in_grid, thr_per_blk>>>(d_A, d_B, d_C);
-
-    // Copy data from device array d_C to host array C
-   // cudaMemcpy(C, d_C, bytes, cudaMemcpyDeviceToHost);
 
     // Verify results
     double tolerance = 1.0e-14;
@@ -74,10 +53,6 @@ int main()
     free(B);
     free(C);
 
-    // Free GPU memory
-   /* cudaFree(d_A);
-    cudaFree(d_B);
-    cudaFree(d_C);*/
 
     printf("\n---------------------------\n");
     printf("__SUCCESS__\n");
